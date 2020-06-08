@@ -16,10 +16,13 @@
   * [TP-Link:](https://www.tp-link.com/us/home-networking/smart-home/smart-switches) several smart plugs, switches, bulbs...
   * ~~[Wink hub](http://status.winkapp.com) control z-wave devices, including Philips and GE switches~~
   * Lights are controlled by Philips Hue hub, MQTT controls Sonoff switches with Tasmota firmware, Z-wave and TP-Link via Wifi:
-    * [Philips Hue bulbs, control buttons & hub](https://www2.meethue.com/en-us) several bulbs in Office, Family room and Kitchen
+    * [Philips Hue bulbs, motion/temperature/light sensor, control buttons & hub](https://www2.meethue.com/en-us) several bulbs in Office, Family room and Kitchen
     * [TorchStar Led Strip Light IP65](https://www.torchstar.us/16-4ft-led-strip-light-compatible-with-alexa-wifi-wireless-smart-phone-app-flexible-warm-white-36w-lighting-kit-ip65-waterproof-ul-listed-12v-power-supply-in-party-kitchen.html) using SmartLife/Tuya integration
     * [Sonoff Basic Switches](https://sonoff.tech) reflashed with Tasmota
     * [Aeotec Z-Stick Gen5](http://aeotec.com/z-wave-gen5) connected to HAcore via QNAP USB port; controls 3 GE/Jasco dimmer switches.
+    * [WyzeSense](https://wyze.com/wyze-sense.html) used to second-guess the state of my garage door; motion detector does a Wake-on-Lan to my computer
+    * [LiftMaster Wi-Fi Garage Door Opener](https://www.liftmaster.com/828lm-internet-gateway/p/G828LM) controlled by MyQ sensor & hub.
+    * [InkBird C929](https://www.ebay.com/itm/254573599524?ViewItem=&item=254573599524) Temperature sensor that controls exhaust fan in server closet
 
 #### 
 * Software
@@ -55,6 +58,8 @@ I found these YouTube channels and websites to be helpful in getting me pointed 
 * [BRUH3-Home-Assistant-Configuration](https://github.com/bruhautomation/BRUH3-Home-Assistant-Configuration)
 * [JuanM: juanmtech.com](https://www.youtube.com/channel/UCR7Xa7cU9wfkSY9v3yN2Vtw) has some really helpful videos to get started with Lovelace
 #### TBD:
-* ~~Fix some nagging incorrect behaviors that occur when directing Onkyo AV receiver to play music~~ (fixed)
+* ~~Fix some nagging incorrect behaviors that occur when directing Onkyo AV receiver to play music~~ (fixed?)
+*   Add option for selecting Zone 2 Cast input
+*   Open/Close garage door using MYQ
 * ~~Get SSL & DnDNS working. Got it working on Hasspian, got tangled up in Docker issues on QNAP.~~ Set aside for now. May try new remote access through Nabu Casa
 * Improve light behavior to turn on when the weather is cloudy. (someday)
