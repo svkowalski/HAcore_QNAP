@@ -11,7 +11,7 @@
     * [Onkyo AV-Receiver TX-NR525](https://www.onkyousa.com/Products/model.php?m=TX-NR525&class=Receiver) Zone 2 extends analog sound to other rooms and outdoor porch using a Pyle PCA3 amplifier
     * [Roku Ultra](https://www.roku.com/products/roku-ultra) directly attached to an older (not smart) HDTV (see next)
     * [Panasonic TC-P50U50 Plasma HDTV](https://shop.panasonic.com/support-only/TC-P50U50.html)
-    * [Sony BDP-S5200 Blu-ray Disk DVD Player] (https://www.sony.com/electronics/support/home-video-blu-ray-disc-players-recorders/bdp-s5200)
+    * [Sony BDP-S5200 Blu-ray Disk DVD Player](https://www.sony.com/electronics/support/home-video-blu-ray-disc-players-recorders/bdp-s5200)
     * [Google Chromecast/Chrome Audio:](https://support.google.com/chromecast/?hl=en) Casts Youtube videos to Family room HDTV...
   * [TP-Link:](https://www.tp-link.com/us/home-networking/smart-home/smart-switches) several smart plugs, switches, bulbs...
   * ~~[Wink hub](http://status.winkapp.com) control z-wave devices, including Philips and GE switches~~
