@@ -592,9 +592,9 @@ wakeup_ultradell:
       broadcast_address: 192.168.1.255
 
 #################################################################
-# Switch to UltraDell screen
-ultradell_screen:
-  alias: ultraDell screen
+# Switch to (currently) UltraDell screen
+hdmi_1:
+  alias: HDMI 1
   sequence:
   - service: remote.send_command
     data:
@@ -603,9 +603,10 @@ ultradell_screen:
       delay_secs: 0.3
       command:
         - Input1
-# Switch to Giada screen
-giada_screen:
-  alias: Giada screen
+# Switch to (currently) ASUS Chromebook screen
+# Note: Harmony mislabelled Input2 & Input3 (6/8/2020)
+hdmi_2:
+  alias: HDMI 2
   sequence:
   - service: remote.send_command
     data:
@@ -614,9 +615,9 @@ giada_screen:
       delay_secs: 0.3
       command:
         - Input2
-# Switch to Xpc screen
-xpc_screen:
-  alias: xpc screen
+# Switch to (currently) Xpc screen
+hdmi_3:
+  alias: HDMI 3
   sequence:
   - service: remote.send_command
     data:
