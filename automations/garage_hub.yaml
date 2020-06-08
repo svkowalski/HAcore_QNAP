@@ -1,0 +1,16 @@
+############################################################
+# Garage hub automations
+############################################################
+- alias: Power off Garage RPi moOde
+  trigger:
+    platform: state
+    entity_id: binary_sensor.pimoodeg
+  condition:
+    condition: state
+    entity_id: binary_sensor.pimoodeg
+    state: 'off'
+  action:
+  - delay: 00:00:15
+  - service: switch.turn_off
+    data_template:
+      entity_id: switch.garage_moode

@@ -1,0 +1,280 @@
+####################################################
+#                                                  #
+#                 HOME ASSISTANT                   #
+#                                                  #
+####################################################
+
+####################################################
+homeassistant:
+####################################################
+# Name of the location where Home Assistant is running
+  name: Sea Ash Circle
+# Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+# Impacts weather/sunrise data
+  elevation: 724
+# metric for Metric, imperial for Imperial
+  unit_system: imperial
+# C for Celcius, F for Fahrenheit
+  temperature_unit: F
+# Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Chicago
+####################################################
+# Customization file
+  customize: !include customize.yaml
+####################################################
+# List of folders that can be used as sources for sending files
+  whitelist_external_dirs:
+    - /config
+####################################################
+#                                                  #
+#                     GENERAL                      #
+#                                                  #
+####################################################
+
+####################################################
+# System Health component for running diagnostics
+system_health:
+
+####################################################
+# Enables configuration UI
+# https://home-assistant.io/components/config/
+config:
+
+####################################################
+# Recorder history log
+# https://www.home-assistant.io/integrations/recorder/
+recorder:
+  purge_keep_days: 3
+  include:
+    domains:
+#     - light
+      - switch
+      - zwave
+#     - media_player
+#     - remote
+      - sensor
+      - binary_sensor
+      - climate
+####################################################
+# Enables support for tracking state changes over time
+# https://home-assistant.io/components/history/
+history:
+
+####################################################
+# View all events in a logbook
+logbook:
+
+####################################################
+# Enables the frontend
+# https://www.home-assistant.io/components/frontend/
+frontend:
+  themes: !include_dir_merge_named themes/
+
+####################################################
+# Configure Lovelace component for YAML mode:
+# https://next--home-assistant-docs.netlify.com/lovelace/yaml-mode/
+# New in 0.84
+lovelace:
+# mode: yaml
+  mode: storage
+  resources:
+#################################################################
+# Bar Card
+  - type: js
+    url: /community_plugin/bar-card/bar-card.js
+#################################################################
+# Button Card
+  - type: js
+    url: /community_plugin/button-card/button-card.js
+#################################################################
+# Custom Header Card
+  - type: js
+    url: /community_plugin/custom-header/custom-header.js
+#################################################################
+# Lovelace Card Preloader
+# No longer needed, used for vertical-stack-in-card
+# - type: js
+#   url: /community_plugin/lovelace-card-preloader/lovelace-card-preloader.js
+#################################################################
+# Layout Card
+  - type: js
+    url: /community_plugin/lovelace-layout-card/layout-card.js
+#################################################################
+# Mini-Media Player
+  - type: js
+    url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+#################################################################
+# Roku Card
+  - type: js
+    url: /community_plugin/roku-card/roku-card.js
+#################################################################
+# Simple Thermostat
+  - type: js
+    url: /community_plugin/simple-thermostat/simple-thermostat.js
+#################################################################
+# Simple Weather Card
+  - type: js
+    url: /community_plugin/weather-card/weather-card.js
+
+####################################################
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
+
+####################################################
+# Enables the component that provides a service to download files
+# https://www.home-assistant.io/components/downloader/
+downloader:
+  download_dir: downloads
+
+####################################################
+# Discover some devices automatically
+# https://www.home-assistant.io/components/discovery/
+discovery:
+
+####################################################
+# https://home-assistant.io/components/logger/
+logger:
+  default: warn
+# logs:
+#   homeassistant.components.websocket_api.http.connection: critical
+
+####################################################
+# Track the sun
+# https://home-assistant.io/components/sun/
+sun:
+
+####################################################
+# Circadian custom component
+# https://github.com/claytonjn/hass-circadian_lighting
+circadian_lighting:
+
+####################################################
+# Enables HA for Android, et al.
+mobile_app:
+
+####################################################
+# Wake on LAN
+# https://www.home-assistant.io/integrations/wake_on_lan/
+wake_on_lan:
+
+####################################################
+# MQTT
+# This is here just to nudge you where to find broker info
+# broker: !secret mqtt_broker_ip
+
+####################################################
+# Wyze blue button sensor
+# https://github.com/HclX/WyzeSensePy
+# https://hclxing.wordpress.com/2019/05/30/reverse-engineering-wyzesense-bridge-protocol-part-i/
+# https://github.com/Jerrkawz/GarageQTPi
+cover:
+  - platform: template
+    covers:
+      garage_door_wyze:
+        friendly_name: "Garage door (Wyze)"
+        value_template: "{{ is_state('binary_sensor.wyze_garage_door', 'off') }}"
+        open_cover:
+          service: switch.toggle
+          data:
+            entity_id: switch.wyze_garage_door
+        close_cover:
+          service: switch.toggle
+          data:
+            entity_id: switch.wyze_garage_door
+        icon_template: >-
+          {% if is_state('binary_sensor.wyze_garage_door', 'on') %}
+              mdi:gesture-tap-button
+          {% else %}
+              mdi:gesture-tap-box
+          {% endif %}
+
+####################################################
+#                                                  #
+#               MEDIA DEVICES                      #
+#                                                  #
+####################################################
+
+####################################################
+# Add Onkyo AV Receiver
+# https://www.home-assistant.io/components/media_player.onkyo/
+# Note: I renamed video2 & video5-->video4_aux1 to get the 
+# Chromecast devices to match the Activity codes
+media_player:
+  - platform: onkyo
+    name: Onkyo
+    host: !secret onkyo_ip
+    max_volume: 100
+    sources:
+      bd-dvd: 'Bluray/DVD'
+      video2_cbl-sat: 'AudioCast'
+      game: 'external HDMI'
+      pc: 'moOde'
+      video4_aux1: 'ChromeCast'
+      tv-cd: 'HDTV'
+      fm: 'FM'
+
+####################################################
+# Add moOde Music Player Daemons (mpd)
+# https://www.home-assistant.io/components/media_player.mpd/
+  - platform: mpd
+    name: Family Room moOde
+    host: !secret family_room_moode_ip
+
+####################################################
+#                                                  #
+#             OFFICE 365 INTEGRATION               #
+#                                                  #
+####################################################
+#o365:
+# client_secret: !secret azure_client_secret
+# client_id: !secret azure_client_id
+# email_sensor:
+#   - name: inbox
+#     max_items: 2
+#     is_unread: True
+# query_sensors:
+#   - name: "HA Notifications"
+#     folder: "Inbox/Test_Inbox"
+#     from: "svkowalski@outlook.com"
+#     subject_contains: "Notifcation from home assistant"
+#     has_attachment: True
+#     max_items: 2
+#     is_unread: True
+
+####################################################
+#                                                  #
+#      LINKS TO INCLUDE CONFIGURATION FILES        #
+#                                                  #
+####################################################
+# Note: customize.yaml is at the top of this file
+####################################################
+automation: !include automations.yaml
+automation old: !include_dir_merge_list automations/
+####################################################
+binary_sensor: !include binary_sensors.yaml
+####################################################
+input_boolean: !include input_boolean.yaml
+####################################################
+input_number: !include input_number.yaml
+####################################################
+input_select: !include input_select.yaml
+####################################################
+light: !include lights.yaml
+####################################################
+scene: !include scenes.yaml
+####################################################
+script: !include scripts.yaml
+####################################################
+sensor: !include sensors.yaml
+####################################################
+shell_command: !include shell_commands.yaml
+####################################################
+switch: !include switches.yaml

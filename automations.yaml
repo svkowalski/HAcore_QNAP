@@ -1,0 +1,158 @@
+- id: just_before_dawn
+  alias: Just before dawn
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: -00:30:00
+  action:
+  - data_template:
+      entity_id: switch.circadian_lighting_circadian_lighting
+    service: switch.turn_on
+  - data_template:
+      entity_id:
+      - light.bathroom_light
+      - light.under_cabinet_leds
+    service: light.turn_on
+- id: turn_off_bathroom_and_kitchen_sink_lights
+  alias: Turn off Bathroom light
+  description: ''
+  trigger:
+  - event: sunrise
+    offset: 00:01:30
+    platform: sun
+  action:
+  - data_template:
+      entity_id: switch.circadian_lighting_circadian_lighting
+    service: switch.turn_off
+  - data_template:
+      entity_id: light.bathroom_light
+    service: light.turn_off
+- id: turn_off_under_counter_led_lights
+  alias: Turn off under-counter LED lights
+  trigger:
+  - platform: time
+    at: 09:30:00
+  action:
+  - data_template:
+      entity_id: light.under_cabinet_leds
+    service: light.turn_off
+- id: just_before_dusk
+  alias: Just before dusk
+  trigger:
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
+  action:
+  - data_template:
+      entity_id: switch.circadian_lighting_circadian_lighting
+    service: switch.turn_on
+  - delay: 00:00:15
+  - data_template:
+      entity_id:
+      - light.bookcase_candles
+      - light.office_floor_lamp_colorful
+      - light.under_cabinet_leds
+    service: light.turn_on
+  initial_state: 'true'
+- id: around_sunset
+  alias: Around sunset
+  trigger:
+  - event: sunset
+    offset: -00:15:00
+    platform: sun
+  action:
+  - data_template:
+      entity_id:
+      - light.bedroom_light
+      - light.bathroom_light
+      - light.family_room_lamp
+      - light.lamp_on_dresser
+      - light.lamp_in_foyer
+    service: light.turn_on
+  initial_state: 'true'
+- id: around_bed_time
+  alias: Around bed time
+  trigger:
+  - at: '22:50:00'
+    platform: time
+  action:
+  - data_template:
+      entity_id: switch.circadian_lighting_circadian_lighting
+    service: switch.turn_off
+  - data_template:
+      entity_id: light.under_cabinet_leds
+    service: light.turn_off
+  initial_state: 'true'
+- id: dim_bathroom_light
+  alias: Dim the bathroom light
+  trigger:
+  - platform: time
+    at: '23:10:00'
+  action:
+  - data_template:
+      entity_id: light.bathroom_light
+      brightness_pct: 1
+    service: light.turn_on
+  - data_template:
+      entity_id: light.lamp_on_dresser
+    service: light.turn_off
+- id: turn_off_lights_after_midnight
+  alias: Turn off lights after midnight
+  trigger:
+  - at: 00:15:00
+    platform: time
+  action:
+  - data_template:
+      entity_id:
+      - light.bookcase_candles
+      - light.lamp_on_dresser
+      - light.lamp_in_foyer
+      - light.bookcase_lights
+      - light.bedroom_light
+      - light.office_floor_lamp_colorful
+      - light.office_reading_light
+      - light.laura_s_desk_lamp
+      - light.steve_s_desk_lamp
+      - light.family_room_lamp
+      - light.under_cabinet_leds
+      - light.kitchen_sink_light
+      - light.porch_fan_light
+      - light.back_door_light
+    service: light.turn_off
+- id: turn_on_bookcase_lights_at_sunset_while_watching_tv
+  alias: Turn on Bookcase lights at sunset while watching TV
+  description: See automation "Just before Dusk" above for circadian lighting timing
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -00:20:00
+  condition:
+  - condition: state
+    entity_id: media_player.onkyo
+    state: 'on'
+  action:
+  - data_template:
+      entity_id:
+      - light.bookcase_lights
+    service: light.turn_on
+  - data_template:
+      entity_id:
+      - light.kitchen_sink_light
+    service: light.turn_off
+  initial_state: 'true'
+- id: turn_on_bookcase_lights_for_tv_at_dusk
+  alias: Turn on Bookcase lights for TV at dusk
+  description: This is to cover the situation when media is turned on after dark
+  trigger:
+    entity_id: media_player.onkyo
+    platform: state
+    to: 'on'
+  condition:
+    condition: sun
+    after: sunset
+  action:
+  - service: light.turn_on
+    entity_id: light.bookcase_lights
+  - service: light.turn_off
+    entity_id: light.kitchen_sink_light
+  initial_state: 'true'

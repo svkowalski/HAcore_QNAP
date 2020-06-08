@@ -1,0 +1,42 @@
+############################################################
+# Onkyo AV receiver automations
+############################################################
+- alias: Update Onkyo receiver status in HA
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: media_player.onkyo
+  action:
+  - service_template: homeassistant.turn_{{ 'on' if states.media_player.onkyo.state == 'on' else 'off' }}
+    entity_id:
+    - input_boolean.onkyo
+
+############################################################
+# This automation is never getting triggered, no entry in core.entity_registry
+- alias: SET Onkyo volume slider
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: input_number.onkyo_volume_slider
+  condition:
+  - condition: state
+    entity_id: media_player.onkyo
+    state: 'on'
+  action:
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.onkyo
+      volume_level: '{{ states.media_player.onkyo.attributes.volume_level | float / 80 * 100 }}'
+
+############################################################
+- alias: GET Onkyo sound level from box
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: media_player.onkyo
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.onkyo_volume_box
+      value: '{{ states.media_player.onkyo.attributes.volume_level | float / 80 * 100 }}'
+# See also SET initial values on Family room Hub start in family_room_hub.yaml automations

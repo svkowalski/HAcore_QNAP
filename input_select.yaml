@@ -1,0 +1,40 @@
+#################################################################
+#                                                               #
+#                        INPUT SELECT                           #
+#                                                               #
+#################################################################
+
+#################################################################
+# Input Activities for HarmonyHub
+#################################################################
+  family_room_hub_selection:
+    icon: mdi:view-list
+    name: "Choose an action from this dropdown list:"
+    options:
+      - "Select an activity from this list:"
+      - PowerOff
+      - Listen to music
+      - YouTube TV
+      - Broadcast TV
+      - Watch DVD
+      - Listen to FM
+      - Cast to TV
+      - Audio Cast
+      - Netflix
+      - Amazon Prime
+      - Bookcase lights
+    initial: "Select an activity from this list:"
+
+#################################################################
+# Input Activities for OfficeHub
+#################################################################
+  office_hub_selection:
+    icon: mdi:office
+    name: "Choose an action from this list:"
+    options:
+      - "Select an activity from this list:"
+      - PowerOff
+      - Listen to music
+      - Turn on fan
+      - PC sound
+    initial: "Select an activity from this list:"

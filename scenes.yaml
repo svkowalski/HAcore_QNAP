@@ -1,0 +1,15 @@
+#################################################################
+#                                                               #
+#                        SCENES                                 #
+#                                                               #
+#################################################################
+  - name: Play music
+    icon: mdi:script-text-outline
+    entities:
+      light.bookcase_lights: off
+      media_player.onkyo:
+        state: on
+        source_list: moOde
+      input_number.onkyo_volume_slider:
+        state: "8"
+      

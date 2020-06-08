@@ -1,0 +1,28 @@
+############################################################
+# Lights automations
+############################################################
+############################################################
+# Turn on lights when weather is dark
+- alias: Turn on lights when overcast
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.family_room_sensor_light_level
+    below: 6
+    for:
+      minutes: 20
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  action:
+  - service: light.turn_on
+    data_template:
+      entity_id:
+        - light.office_floor_lamp_colorful
+        - light.under_cabinet_leds
+        - light.family_room_lamp
+        - light.bookcase_lights
+  - service: switch.turn_on
+    data_template:
+      entity_id:
+        - switch.circadian_lighting_circadian_lighting

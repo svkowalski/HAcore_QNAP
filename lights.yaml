@@ -1,0 +1,61 @@
+#################################################################
+## Lights & Switches
+#################################################################
+
+####################################################
+# MQTT devices
+####################################################
+# Sonoff switch light group
+  - platform: switch
+    name: Sonoff switch S
+    entity_id: switch.sonoffswitch1
+  - platform: switch
+    name: Sonoff switch N
+    entity_id: switch.sonoffswitch2
+####################################################
+# referenced in automations as light.bookcase_candles
+  - platform: group
+    name: Bookcase candles
+    entities:
+      - light.sonoff_switch_s
+      - light.sonoff_switch_n
+####################################################
+# Window candle light group (xmas)
+# - platform: switch
+#   name: Guest Xmas
+#   entity_id: switch.guest_candles
+# - platform: switch
+#   name: Office Xmas
+#   entity_id: switch.office_candles
+# - platform: group
+#   name: Window candles
+#   entities:
+#     - light.guest_xmas
+#     - light.office_xmas
+####################################################
+# Bookcase switch light group
+  - platform: group
+    name: Bookcase lights
+    entities:
+      - light.n_bookcase_light
+      - light.s_bookcase_light
+####################################################
+# Overhead fan/light in Family room
+  - platform: switch
+    name: Overhead light
+    entity_id: switch.overhead_light
+####################################################
+# Lamp on dresser in Family room
+  - platform: switch
+    name: Lamp on dresser
+    entity_id: switch.lamp_on_dresser
+####################################################
+# Lamp in Foyer
+  - platform: switch
+    name: Lamp in Foyer
+    entity_id: switch.lamp_in_foyer
+####################################################
+# Circadian lighting control
+  - platform: switch
+    name: Circadian
+    entity_id: switch.circadian_lighting_circadian_lighting

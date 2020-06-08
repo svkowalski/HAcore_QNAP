@@ -1,0 +1,61 @@
+############################################################
+#  Family room Hub automations
+############################################################
+# This automation is never executed, no entry in core.entity_registry
+- alias: SET initial values on Family room Hub start
+  initial_state: 'on'
+  trigger:
+    platform: state
+# changed entity from input_select.family_room_hub_selection 5/10/2020
+    entity_id: remote.family_room_hub
+    to: 'on'
+  action:
+# Get Onkyo sound level from box (never executed, see above)
+# commented out this service 5/11/2020
+# - service: input_number.set_value
+#   data_template:
+#     entity_id: input_number.onkyo_volume_box
+#     value: '{{ states.media_player.onkyo.attributes.volume_level | float / 80 * 100 }}'
+#     value: '{{ trigger.to_state.attributes.volume_level | float / 80 * 100 }}'
+  - delay: 00:00:03
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.family_room_hub_selection
+      option: '{{ state_attr("remote.family_room_hub","current_activity") }}'
+
+############################################################
+- alias: Start Family room Hub activity from input_select
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_select.family_room_hub_selection
+  action:
+  - service: remote.turn_on
+    data_template:
+      entity_id: remote.family_room_hub
+      activity: '{% if is_state("input_select.family_room_hub_selection", "PowerOff") %}-1
+        {% elif is_state("input_select.family_room_hub_selection", "Listen to music") %}40160433
+        {% elif is_state("input_select.family_room_hub_selection", "YouTube TV") %}40160434
+        {% elif is_state("input_select.family_room_hub_selection", "Broadcast TV") %}40160435
+        {% elif is_state("input_select.family_room_hub_selection", "Watch DVD") %}40160437
+        {% elif is_state("input_select.family_room_hub_selection", "Listen to FM") %}40160438
+        {% elif is_state("input_select.family_room_hub_selection", "Cast to TV") %}40160439
+        {% elif is_state("input_select.family_room_hub_selection", "Audio Cast") %}40160440
+        {% elif is_state("input_select.family_room_hub_selection", "Netflix") %}40161291
+        {% elif is_state("input_select.family_room_hub_selection", "Amazon Prime") %}40161319
+        {% elif is_state("input_select.family_room_hub_selection", "Bookcase lights") %}41001364
+        {% endif %}'
+
+############################################################
+- alias: Shut everything off (Family room Hub)
+  trigger:
+  - entity_id: input_select.family_room_hub_selection
+    platform: state
+    to: PowerOff
+  action:
+  - entity_id: remote.family_room_hub
+    service: remote.turn_off
+  - data_template:
+      option: PowerOff
+    entity_id: input_select.family_room_hub_selection
+    service: input_select.select_option

@@ -1,0 +1,13 @@
+############################################################
+# HAcore initialization automation
+############################################################
+- alias: Update HA after startup
+  initial_state: 'on'
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+  - service: frontend.set_theme
+    data:
+      name: Google Dark Theme
+

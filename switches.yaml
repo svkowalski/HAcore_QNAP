@@ -1,0 +1,189 @@
+#################################################################
+#                                                               #
+#                         Switches                              #
+#                                                               #
+#################################################################
+# MQTT devices
+#################################################################
+# Wyze blue sensor button
+  - platform: mqtt
+    name: "Wyze blue button MQTT"
+    unique_id: 779c1bb5
+    state_topic: "hawyzesense/binary_sensor/wyzesense_779c1bb5/state"
+    command_topic: "hawyzesense/binary_sensor/wyzesense_779c1bb5/command"
+# Wyze garage door sensor button
+  - platform: mqtt
+    name: "Wyze garage door MQTT"
+    unique_id: 779c1b6e
+    state_topic: "hawyzesense/binary_sensor/wyzesense_779c1b6e/state"
+    command_topic: "hawyzesense/binary_sensor/wyzesense_779c1b6e/command"
+
+#################################################################
+# Wyze button toggle
+# Not sure this is really needed 5/14/2020
+# - platform: template
+#   switches:
+#     wyze_blue:
+#       value_template: "{{is_state('binary_sensor.wyze_blue', 'off') }}"
+#       turn_on:
+#         service: input_boolean.turn_on
+#         data:
+#           entity_id: input_boolean.wyze_blue
+#       turn_off:
+#         service: input_boolean.turn_off
+#         data:
+#           entity_id: input_boolean.wyze_blue
+
+#################################################################
+# Sonoff switch S
+  - platform: mqtt
+    name: "sonoffswitch1"
+    unique_id: dc4f22e48010
+    state_topic: "cmnd/sonoffswitch1/POWER"
+    command_topic: "cmnd/sonoffswitch1/POWER"
+    payload_on: "1"
+    payload_off: "0"
+#   optimistic: 'false'
+    qos: 1
+    retain: 'true'
+
+#################################################################
+# Sonoff switch N
+  - platform: mqtt
+    name: "sonoffswitch2"
+    unique_id: dc4f22e55a2d
+    state_topic: "cmnd/sonoffswitch2/POWER"
+    command_topic: "cmnd/sonoffswitch2/POWER"
+    payload_on: "1"
+    payload_off: "0"
+#   optimistic: 'false'
+    qos: 1
+    retain: 'true'
+
+####################################################
+# Sonoff switch group
+  - platform: template
+    switches:
+      sonoff_switches:
+        value_template: "{{ is_state('sensor.sonoff_switches', 'off') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: group.sonoff_switches
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: group.sonoff_switches
+
+#################################################################
+# Circadian Lighting
+#################################################################
+  - platform: circadian_lighting
+    lights_ct:
+      - light.office_floor_lamp_colorful
+# Let reader set the light level
+#     - light.office_reading_light
+# Turn on bookcase lights separately, so they don't stay on
+#     - light.bookcase_lights
+      - light.n_bookcase_light
+      - light.s_bookcase_light
+      - light.kitchen_sink_light
+    lights_brightness:
+      - light.bathroom_light
+      - light.bedroom_light
+#     - light.porch_fan_light     # don't put this under circadian control for now
+      - light.back_door_light
+#     - light.family_room_lamp    # don't put this under circadian control for now
+      - light.tuya_led_lights
+
+####################################################
+# Wake on LAN
+# Note: This function is also triggered by Rpi hawyzesense
+####################################################
+# UltraDell
+  - platform: wake_on_lan
+    name: UltraDell
+#   host: 192.168.1.213
+    mac: 84:7b:eb:2a:73:20
+    broadcast_address: 192.168.1.255
+  - platform: wake_on_lan
+    name: UltraDellwifi
+#   host: 192.168.1.251
+    mac: e4:b3:18:71:9a:8a
+    broadcast_address: 192.168.1.255
+# Optional: supply a script that will suspend the PC
+# see https://www.home-assistant.io/integrations/wake_on_lan/
+#   turn_off:
+#   service: mqtt.publish
+#   data:
+#     topic: "iotlink/workgroup/desktop-name/commands/suspend"
+####################################################
+# Xpc
+  - platform: wake_on_lan
+    name: Xpc
+#   host: 192.168.1.201
+    mac: 00:30:1b:bd:9c:37
+    broadcast_address: 192.168.1.255
+####################################################
+# Acer Switch
+  - platform: wake_on_lan
+    name: Acer
+#   host: 192.168.1.97
+    mac: 5c:e0:c5:bf:ca:5c
+    broadcast_address: 192.168.1.255
+####################################################
+# Denon & Aiwa
+####################################################
+  - platform: template
+    switches:
+      denon_power:
+        value_template: '{{ is_state("input_boolean.denon", "on") }}'
+        turn_on:
+          - condition: state
+            entity_id: input_boolean.denon
+            state: 'off'
+          - service: input_boolean.toggle
+            data:
+              entity_id: input_boolean.denon
+          - service: script.denon_power_on
+        turn_off:
+          - condition: state
+            entity_id: input_boolean.denon
+            state: 'on'
+          - service: input_boolean.toggle
+            data:
+              entity_id: input_boolean.denon
+          - service: script.denon_power_off
+      aiwa_power:
+        value_template: '{{ is_state("input_boolean.aiwa", "on") }}'
+        turn_on:
+          - condition: state
+            entity_id: input_boolean.aiwa
+            state: 'off'
+          - service: input_boolean.toggle
+            data:
+              entity_id: input_boolean.aiwa
+          - service: script.aiwa_power_toggle
+        turn_off:
+          - condition: state
+            entity_id: input_boolean.aiwa
+            state: 'on'
+          - service: input_boolean.toggle
+            data:
+              entity_id: input_boolean.aiwa
+          - service: script.aiwa_power_toggle
+####################################################
+# Onkyo AV receiver
+####################################################
+  - platform: template
+    switches:
+      onkyo_tv_in:
+        value_template: "{{is_state('media_player.onkyo', 'on') and is_state_attr('media_player.onkyo', 'source', 'tv_cd') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.onkyo_tv_in
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.onkyo_tv_in

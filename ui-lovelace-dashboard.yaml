@@ -1,0 +1,243 @@
+title: Sea Ash Circle
+views:
+  - path: default_view
+    title: Home
+    badges:
+      - entity: binary_sensor.garage_door
+      - entity: binary_sensor.motion_sensor
+      - entity: binary_sensor.pimoodeg
+      - entity: binary_sensor.updater
+      - entity: person.steve_kowalski
+      - entity: sensor.sonoff_switches
+      - entity: sensor.onkyo_volume
+      - entity: sensor.family_room_hub_activity
+      - entity: sensor.office_hub_activity
+      - entity: sensor.weather_symbol
+      - entity: sensor.weather_temperature
+      - entity: sensor.weather_humidity
+      - entity: sensor.weather_precipitation
+      - entity: sensor.weather_wind_speed
+      - entity: sensor.weather_pressure
+      - entity: sensor.weather_wind_direction
+      - entity: sensor.weather_fog
+      - entity: sensor.weather_cloudiness
+      - entity: sensor.weather_low_clouds
+      - entity: sensor.weather_medium_clouds
+      - entity: sensor.weather_high_clouds
+      - entity: sensor.weather_dewpoint_temperature
+      - entity: sensor.qnap_status
+      - entity: sensor.qnap_cpu_temperature
+      - entity: sensor.qnap_cpu_usage
+      - entity: sensor.local_ip
+      - entity: sensor.circadian_values
+      - entity: sun.sun
+    cards:
+      - type: entities
+        entities:
+          - light.s_bookcase_light
+          - light.n_bookcase_light
+          - remote.roku_ultra_4660x2
+        title: Bookcase
+      - type: media-control
+        entity: media_player.roku_ultra_4660x2
+      - type: entities
+        entities:
+          - remote.family_room
+          - light.family_room_lamp
+          - sensor.family_room_sensor_light_level
+          - sensor.family_room_sensor_temperature
+          - binary_sensor.family_room_sensor_motion
+          - sensor.trane_xl824_nativezone_temperature
+          - sensor.trane_xl824_nativezone_zone_status
+          - sensor.trane_xl824_nativezone_zone_setpoint_status
+          - switch.overhead_light
+          - switch.lamp_on_dresser
+        title: Family Room
+      - type: media-control
+        entity: media_player.family_room_tv
+      - type: media-control
+        entity: media_player.family_room
+      - type: thermostat
+        entity: climate.trane_xl824_nativezone
+      - type: entities
+        entities:
+          - switch.lamp_in_foyer
+        title: Foyer
+      - type: entities
+        entities:
+          - entity: switch.garage_moode
+            name: moOde
+        title: Garage
+      - type: entities
+        entities:
+          - entity: light.kitchen_sink_light
+            name: sink light
+        title: Kitchen
+      - type: entities
+        entities:
+          - sensor.mfc_j4710dw_status
+          - sensor.mfc_j4710dw_page_counter
+          - sensor.mfc_j4710dw_b_w_counter
+          - sensor.mfc_j4710dw_color_counter
+          - sensor.mfc_j4710dw_black_ink_remaining
+          - sensor.mfc_j4710dw_cyan_ink_remaining
+          - sensor.mfc_j4710dw_magenta_ink_remaining
+          - sensor.mfc_j4710dw_yellow_ink_remaining
+          - sensor.mfc_j4710dw_uptime
+          - sensor.hacs
+          - light.laura_s_desk_lamp
+          - light.steve_s_desk_lamp
+          - entity: light.office_reading_light
+            name: reading light
+          - entity: light.office_floor_lamp_colorful
+            name: floor lamp (Colorful)
+        title: Office
+      - type: media-control
+        entity: media_player.office_audio_cast
+      - type: entities
+        entities:
+          - entity: light.porch_fan_light
+            name: fan light
+          - light.back_door_light
+        title: Porch
+      - type: entities
+        entities:
+          - light.hue_downlight
+          - sensor.trane_xl824_system_status
+          - sensor.trane_xl824_air_cleaner_mode
+          - sensor.trane_xl824_current_compressor_speed
+          - sensor.trane_xl824_requested_compressor_speed
+          - sensor.trane_xl824_outdoor_temperature
+          - sensor.trane_xl824_relative_humidity
+          - binary_sensor.trane_xl824_blower_active
+        title: Utility
+      - type: entities
+        entities:
+          - cover.garage_door_wyze
+        title: cover
+      - type: entities
+        entities:
+          - input_boolean.aiwa
+          - input_boolean.denon
+          - input_boolean.onkyo
+          - input_boolean.onkyo_tv_in
+        title: input_boolean
+      - type: entities
+        entities:
+          - input_number.onkyo_volume_slider
+          - input_number.onkyo_volume_box
+        title: input_number
+      - type: entities
+        entities:
+          - input_select.family_room_hub_selection
+          - input_select.office_hub_selection
+        title: input_select
+      - type: entities
+        entities:
+          - light.bookcase_candles
+          - light.bookcase_lights
+          - light.circadian
+          - light.jasco_products_14295_in_wall_smart_toggle_dimmer_level
+          - light.jasco_products_14295_in_wall_smart_toggle_dimmer_level_2
+          - light.jasco_products_14295_in_wall_smart_toggle_dimmer_level_3
+          - light.lamp_in_foyer
+          - light.lamp_on_dresser
+          - light.overhead_light
+          - light.sonoff_switch_n
+          - light.sonoff_switch_s
+          - light.04200094dc4f222a5011
+        title: light
+      - type: media-control
+        entity: media_player.family_room_moode
+      - type: media-control
+        entity: media_player.multiroom
+      - type: media-control
+        entity: media_player.onkyo
+      - type: media-control
+        entity: media_player.onkyo_zone_2
+      - type: media-control
+        entity: media_player.onkyo_zone_3
+      - type: entities
+        entities:
+          - scene.my_first_automation
+        title: scene
+      - type: entities
+        entities:
+          - script.kvue
+          - script.aiwa_cd_in
+          - script.aiwa_t_bass
+          - script.aiwa_aux_in
+          - script.aiwa_eq_bass_up
+          - script.aiwa_power_toggle
+          - script.aiwa_surround_toggle
+          - script.aiwa_volume_down
+          - script.aiwa_volume_up
+          - script.amazon
+          - script.keye
+          - script.denon_aux_in
+          - script.denon_dvd_in
+          - script.denon_moode
+          - script.denon_power_off
+          - script.denon_power_on
+          - script.denon_power_toggle
+          - script.denon_volume_down
+          - script.denon_volume_up
+          - script.denon_mute
+          - script.kxan
+          - script.netflix
+          - script.onkyo_chromeaudio
+          - script.onkyo_moode
+          - script.fan_mode
+          - script.fan_oscillate
+          - script.fan_power_toggle
+          - script.fan_speed
+          - script.klru
+          - script.pimoodeg_play_pause
+          - script.pimoodeg_shutdown
+          - script.shut_everything_off
+          - script.sony_bass_boost
+          - script.sony_cd_in
+          - script.sony_bass_down
+          - script.sony_bass_up
+          - script.sony_treble_down
+          - script.sony_treble_up
+          - script.sony_next_track
+          - script.sony_power_toggle
+          - script.sony_previous_track
+          - script.sony_surround_toggle
+          - script.sony_tape_in
+          - script.sony_volume_down
+          - script.sony_volume_up
+          - script.youtubetv
+          - script.zone2pc
+          - script.zone2toggle
+          - script.mpd_next
+          - script.mpd_play_pause
+          - script.mpd_previous
+          - script.ultradell_screen
+          - script.wakeup_ultradell
+          - script.wakeup_xpc
+          - script.xpc_screen
+        title: script
+      - type: entities
+        entities:
+          - switch.circadian_lighting_circadian_lighting
+          - switch.ultradell
+          - switch.ultradellwifi
+          - switch.xpc
+          - switch.aiwa_power
+          - switch.denon_power
+          - switch.onkyo_tv_in
+          - switch.sonoff_switches
+          - switch.sonoffswitch1
+          - switch.sonoffswitch2
+        title: switch
+      - type: weather-forecast
+        entity: weather.sea_ash_circle
+      - type: entities
+        entities:
+          - zwave.aeon_labs_zw090_z_stick_gen5_us
+          - zwave.jasco_products_14295_in_wall_smart_toggle_dimmer
+          - zwave.jasco_products_14295_in_wall_smart_toggle_dimmer_2
+          - zwave.jasco_products_14295_in_wall_smart_toggle_dimmer_3
+        title: zwave

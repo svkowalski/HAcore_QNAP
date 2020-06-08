@@ -1,0 +1,28 @@
+#################################################################
+#                                                               #
+#                        SHELL COMMAND                          #
+#                                                               #
+#################################################################
+
+roku_on: 'curl -X POST http://192.168.1.68:8060/keypress/PowerOn'
+roku_off: 'curl -X POST http://192.168.1.68:8060/keypress/PowerOff'
+roku_volume_mute: 'curl -X POST http://192.168.1.68:8060/keypress/VolumeMute'
+roku_volume_up: 'curl -X POST http://192.168.1.68:8060/keypress/VolumeUp'
+roku_volume_down: 'curl -X POST http://192.168.1.68:8060/keypress/VolumeDown'
+roku_home: 'curl -X POST http://192.168.1.68:8060/keypress/Home'
+roku_reverse: 'curl -X POST http://192.168.1.68:8060/keypress/Rev'
+roku_forward: 'curl -X POST http://192.168.1.68:8060/keypress/Fwd'
+roku_play: 'curl -X POST http://192.168.1.68:8060/keypress/Play'
+roku_select: 'curl -X POST http://192.168.1.68:8060/keypress/Select'
+roku_left: 'curl -X POST http://192.168.1.68:8060/keypress/Left'
+roku_right: 'curl -X POST http://192.168.1.68:8060/keypress/Right'
+roku_down: 'curl -X POST http://192.168.1.68:8060/keypress/Down'
+roku_up: 'curl -X POST http://192.168.1.68:8060/keypress/Up'
+roku_back: 'curl -X POST http://192.168.1.68:8060/keypress/Back'
+roku_replay: 'curl -X POST http://192.168.1.68:8060/keypress/InstantReplay'
+roku_info: 'curl -X POST http://192.168.1.68:8060/keypress/Info'
+roku_backspace: 'curl -X POST http://192.168.1.68:8060/keypress/Backspace'
+roku_search: 'curl -X POST http://192.168.1.68:8060/keypress/Search'
+roku_enter: 'curl -X POST http://192.168.1.68:8060/keypress/Enter'
+# This shell command is for moOde/MPD
+mpd_play_pause: 'curl -X POST http://192.168.1.222/command/?cmd=pause 1'

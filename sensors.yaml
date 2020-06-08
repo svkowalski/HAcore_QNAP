@@ -1,0 +1,164 @@
+#################################################################
+#                                                               #
+#                           SENSOR                              #
+#                                                               #
+#################################################################
+
+#################################################################
+## QNAP
+#################################################################
+  - platform: qnap
+    host: 192.168.1.11
+# Documentation says port 8080 is set by default, but it is not
+    port: 8080
+    ssl: false
+    verify_ssl: false
+    username: !secret qnap_username
+    password: !secret qnap_password
+    monitored_conditions:
+      - status
+      - cpu_temp
+      - cpu_usage
+#     - drive_smart_status
+#     - system_temp
+#     - memory_free
+#     - memory_used
+#     - memory_percent_used
+#     - network_link_status
+#     - network_tx
+#     - network_rx
+#     - drive_temp
+#     - volume_size_free
+#     - volume_size_used
+#     - volume_percentage_used
+#   update_interval:
+#     minutes: 5
+
+#################################################################
+## Weather prediction
+#################################################################
+  - platform: yr
+    name: Weather
+#   forecast: 24
+    monitored_conditions:
+      - symbol
+      - temperature
+      - humidity
+      - precipitation
+      - windSpeed              # weather_wind_speed
+      - pressure
+      - windDirection
+      - fog
+      - cloudiness
+      - lowClouds
+      - mediumClouds
+      - highClouds
+      - dewpointTemperature
+
+####################################################
+# Nexia/Trane climate control
+# https://github.com/ryannazaretian/hacs-nexia-climate-integration
+# - platform: Nexia
+
+  - platform: template
+    sensors:
+
+#################################################################
+## Bookcase sonoff switches
+#################################################################
+      sonoff_switches:
+        value_template: >-
+          {% if is_state('switch.sonoffswitch1.state', 'on') %}
+            'on'
+          {% else %}
+            'off'
+          {% endif %}
+
+#################################################################
+## Current [Harmony in Family Room] Activity
+#################################################################
+      family_room_hub_activity:
+        friendly_name: 'Current Family room hub activity'
+        value_template: >
+          {% if is_state('remote.family_room_hub', 'on') %}
+            {{ states.remote.family_room_hub.attributes.current_activity }}
+          {% else %}
+            PowerOff
+          {% endif %}
+
+#################################################################
+## Current [Harmony in Office] Activity
+#################################################################
+      office_hub_activity:
+        friendly_name: 'Current Office hub activity'
+        value_template: >
+          {% if is_state('remote.office_hub', 'on') %}
+            {{ states.remote.office_hub.attributes.current_office_activity }}
+          {% else %}
+            PowerOff
+          {% endif %}
+
+#################################################################
+## Office closet fan
+#################################################################
+      office_fan_temp:
+        friendly_name: "Office closet fan temp"
+        unit_of_measurement: '°F'
+        value_template: >
+          {{ '%.1f' | format(state_attr('climate.office_closet_fan', 'current_temperature') / 6.5 | float) }}
+        
+#################################################################
+## Onkyo AV Receiver volume
+#################################################################
+      onkyo_volume:
+        friendly_name: 'Onkyo Volume'
+        value_template: >-
+          {% if is_state('media_player.onkyo', 'on') %}
+            {% set n = states.media_player.onkyo.attributes.volume_level | float %}
+            {{ '%.1f'%( n * 80.0 | round(1) )  }}
+          {% else %}
+            0.0
+          {% endif %}
+
+##    av_receiver:
+##      friendly_name: 'Onkyo Volume'
+##Changed 9/2 to correct volume_level attribute error
+##      value_template: >-
+##        {%- if states.media_player.av_receiver.attributes.volume_level != None -%}
+##          {{ (states.media_player.av_receiver.attributes.volume_level|default(0) * 80) | int }}
+##        {%- else -%}
+##          PowerOff
+##        {%- endif -%}
+#       value_template: >-
+#         {% if is_state('media_player.av_receiver', 'on') %}
+#           {% set n = states.media_player.av_receiver.attributes.volume_level | float %}
+#           {{ '%.1f'%( n*80.0 | round(1) )  }}
+#         {% else %}
+#           12.0
+#         {% endif %}
+        
+#################################################################
+## Onkyo AV Receiver input
+#################################################################
+#     onkyo_tv_in:
+#       friendly_name: 'Onkyo TV In'
+#       entity_id: sensor.time
+#       value_template: >-
+#         {% if is_state('media_player.onkyo', 'on') %}
+#           {% set input = states.media_player.onkyo.attributes.source %}
+#           {{ states.media_player.onkyo.attributes["tv_cd"] = "input" }}
+#         {% endif %}
+#       value_template: '{{ states.media_player.onkyo.attributes["source"] }}'
+
+#################################################################
+## Pi Motion sensor
+#################################################################
+# Disabled for now, since I can't get it to work
+# Use Pi motion sensor
+#     pi_motion:
+#       value_template: >
+#         {% if is_state('cover.pi_motion', 'open') %}
+#           on
+#         {% else %}
+#           off
+#         {% endif %}

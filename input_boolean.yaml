@@ -1,0 +1,17 @@
+#################################################################
+#                                                               #
+#                        INPUT BOOLEANS                         #
+#                                                               #
+#################################################################
+
+  onkyo:
+    initial: off
+    icon: mdi:toggle-switch
+
+  denon:
+    initial: off
+    icon: mdi:power
+
+  aiwa:
+    initial: on
+    icon: mdi:power

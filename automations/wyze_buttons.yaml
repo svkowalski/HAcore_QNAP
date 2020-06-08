@@ -1,0 +1,20 @@
+############################################################
+# Wyze button automations
+############################################################
+#
+############################################################
+# Toggle the blue Wyze button
+- alias: Toggle the blue Wyze button
+  description: The blue sensor controls the back porch light
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.wyze_blue
+    to: 'off'
+
+  action:
+  - service: light.toggle
+    data_template:
+      entity_id:
+        - light.back_door_light
+      transition: 3

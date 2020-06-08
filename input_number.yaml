@@ -1,0 +1,22 @@
+#################################################################
+#                                                               #
+#                        INPUT NUMBER                           #
+#                                                               #
+#################################################################
+  onkyo_volume_slider:
+    icon: mdi:volume-high
+    name: Volume
+    initial: 10.0
+    min: 0.0
+    max: 80.0
+    step: 1.0
+    mode: slider
+
+  onkyo_volume_box:
+    icon: mdi:volume-high
+    name: Volume
+    initial: 12
+    min: 0
+    max: 80
+    step: 1
+    mode: box

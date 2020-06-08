@@ -1,0 +1,36 @@
+####################################################
+# Wyze Sense sensors & contact sensors
+# see also sensors.yaml
+# https://github.com/kevinvincent/ha-wyzesense
+#################################################################
+# Wyze sensors
+  - platform: mqtt
+    name: "Wyze Blue button"
+    unique_id: 779c1bb5
+    state_topic: "hawyzesense/binary_sensor/wyzesense_779c1bb5/state"
+    payload_on: "on"
+    payload_off: "off"
+
+  - platform: mqtt
+    name: "Wyze Garage door"
+    unique_id: 779c1b6e
+    state_topic: "hawyzesense/binary_sensor/wyzesense_779c1b6e/state"
+# Payload states are inverted to reflect the position of the door
+    payload_on: "off"
+    payload_off: "on"
+
+  - platform: mqtt
+    name: "Motion sensor"
+    unique_id: 779d6501
+    state_topic: "hawyzesense/binary_sensor/wyzesense_779d6501/state"
+    payload_on: "on"
+    payload_off: "off"
+
+#################################################################
+# Use PING to see if Garage Pi moOde is running
+  - platform: ping
+    host: 192.168.1.246   # PimoOdeG
+    name: PimoOdeG
+    count: 3
+    scan_interval: 30
+

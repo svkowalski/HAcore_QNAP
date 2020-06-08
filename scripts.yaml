@@ -1,0 +1,651 @@
+#################################################################
+#                                                               #
+#                    scripts.yaml                               #
+#                                                               #
+#################################################################
+
+#################################################################
+# Family room Hub
+#################################################################
+# Shut everything off
+shut_everything_off:
+  alias: Shut everything off
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.family_room_hub
+    data_template:
+      activity: -1
+
+#################################################################
+# moOde MPD & volume
+#################################################################
+# MPD play/pause
+mpd_play_pause:
+  sequence:
+  - service: media_player.media_play_pause
+    entity_id: media_player.family_room_moode
+
+#################################################################
+# MPD play next song/stream
+mpd_next:
+  sequence:
+  - service: media_player.media_next_track
+    entity_id: media_player.family_room_moode
+
+#################################################################
+# MPD play previous song/stream
+mpd_previous:
+  sequence:
+  - service: media_player.media_previous_track
+    entity_id: media_player.family_room_moode
+
+#################################################################
+# Family room hub Onkyo moOde input selection hack
+#################################################################
+onkyo_moode:
+  alias: Onkyo moOde
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.family_room_hub
+    data_template:
+      activity: 40160433
+
+#################################################################
+# Family room hub Onkyo ChromeAudio input selection hack
+#################################################################
+onkyo_chromeaudio:
+  alias: Onkyo ChromeAudio
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.family_room_hub
+    data_template:
+      activity: 40160440
+
+#################################################################
+# Family room hub Broadcast channel selections
+#################################################################
+kxan:
+  alias: NBC - KXAN
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.family_room_hub
+      device: 63675165
+      delay_secs: 0.3
+      command:
+      - 3
+      - 6
+      - '-'
+      - 1
+keye:
+  alias: CBS - KEYE
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.family_room_hub
+      device: 63675165
+      delay_secs: 0.3
+      command:
+      - 4
+      - 2
+      - '-'
+      - 1
+kvue:
+  alias: ABC - KVUE
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.family_room_hub
+      device: 63675165
+      delay_secs: 0.3
+      command:
+      - 2
+      - 4
+      - '-'
+      - 1
+klru:
+  alias: PBS - KLRU
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.family_room_hub
+      device: 63675165
+      delay_secs: 0.3
+      command:
+      - 1
+      - 8
+      - '-'
+      - 1
+netflix:
+  alias: Netflix
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.family_room_hub
+    data_template:
+      activity: 40161291
+amazon:
+  alias: Amazon Prime
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.family_room_hub
+    data_template:
+      activity: 40161319
+youtubetv:
+  alias: YouTube TV
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.family_room_hub
+    data_template:
+      activity: 40160434
+
+#################################################################
+# Zone 2 commands
+#################################################################
+zone2toggle:
+  alias: Zone 2 toggle
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.family_room_hub
+      device: 63675166
+      delay_secs: 0.3
+      command:
+        - 'Zone 2 toggle'
+
+zone2pc:
+  alias: Zone 2 moOde
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.family_room_hub
+      device: 63675166
+      delay_secs: 0.3
+      command:
+        - 'Zone 2 PC'
+
+#################################################################
+# Office Hub commands
+#################################################################
+# on/off
+denon_power_toggle:
+  alias: Denon power toggle
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      delay_secs: 0.3
+      command:
+        - PowerToggle
+
+denon_power_off:
+  alias: Denon power off
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      delay_secs: 0.3
+      command:
+        - PowerOff
+
+denon_power_on:
+  alias: Denon power on
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      delay_secs: 0.3
+      command:
+        - PowerOn
+
+# Volume up
+denon_volume_up:
+  alias: Denon volume up
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      command:
+        - VolumeUp
+
+# Volume down
+denon_volume_down:
+  alias: Denon volume down
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      command:
+        - VolumeDown
+
+# Mute
+denon_mute:
+  alias: Mute moOde
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      delay_secs: 0.3
+      command:
+        - Mute
+
+# TV In for moOde
+denon_moode:
+  alias: Denon moOde (TV in)
+  sequence:
+  - service: switch.turn_on
+    data_template:
+      entity_id: switch.denon_power
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      delay_secs: 0.3
+      command:
+        - InputTv
+
+# Aux In for Audio Cast
+denon_aux_in:
+  alias: Denon Aux in
+  sequence:
+  - service: switch.turn_on
+    data_template:
+      entity_id: switch.denon_power
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      delay_secs: 0.3
+      command:
+        - InputAux
+
+# DVD In for Panasonic
+denon_dvd_in:
+  alias: Denon DVD in
+  sequence:
+  - service: switch.turn_on
+    data_template:
+      entity_id: switch.denon_power
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 66446877
+      delay_secs: 0.3
+      command:
+        - InputDvd
+
+#################################################################
+# Aiwa Mini System
+# this script replaced by input_boolean & automation
+aiwa_power_toggle:
+  alias: Aiwa power toggle
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905555
+      delay_secs: 0.3
+      command:
+        - PowerToggle
+# Surround
+aiwa_surround_toggle:
+  alias: Aiwa surround toggle
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905555
+      delay_secs: 0.3
+      command:
+        - SurroundToggle
+# CD In (actually, used to mute)
+aiwa_cd_in:
+  alias: Aiwa CD input
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905555
+      delay_secs: 0.3
+      command:
+        - InputCD
+# Video/Aux In (actually, PC input)
+aiwa_aux_in:
+  alias: Aiwa auxiliary input
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905555
+      delay_secs: 0.3
+      command:
+        - 'InputVideo/Aux'
+# Volume up
+aiwa_volume_up:
+  alias: Aiwa volume up
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905555
+      delay_secs: 0.3
+      command:
+        - VolumeUp
+# Volume down
+aiwa_volume_down:
+  alias: Aiwa volume down
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905555
+      delay_secs: 0.3
+      command:
+        - VolumeDown
+# T-Bass
+aiwa_t_bass:
+  alias: Aiwa T-Bass
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905555
+      delay_secs: 0.3
+      command:
+        - T-Bass
+# Equalizer Bass up
+aiwa_eq_bass_up:
+  alias: Aiwa equalizer bass up
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905555
+      delay_secs: 0.3
+      command:
+        - EqualizerBassUp
+
+#################################################################
+# Sony mini system
+sony_power_toggle:
+  alias: Sony power toggle
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - PowerToggle
+# Surround
+sony_surround_toggle:
+  alias: Sony surround toggle
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - SurroundToggle
+# CD In
+sony_cd_in:
+  alias: Sony CD input
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - InputCD
+# Tape In (actually, PC input)
+sony_tape_in:
+  alias: Sony tape input
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - 'InputTape'
+# Volume up
+sony_volume_up:
+  alias: Sony volume up
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - VolumeUp
+# Volume down
+sony_volume_down:
+  alias: Sony volume down
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - VolumeDown
+# Bass boost
+sony_bass_boost:
+  alias: Sony Bass boost
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - Bass Boost
+# Bass up
+sony_bass_up:
+  alias: Sony equalizer bass up
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - EqualizerBassUp
+# Bass down
+sony_bass_down:
+  alias: Sony equalizer bass down
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - EqualizerBassDown
+# Treble up
+sony_treble_up:
+  alias: Sony equalizer treble up
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - EqualizerTrebleUp
+# Treble down
+sony_treble_down:
+  alias: Sony equalizer treble down
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - EqualizerTrebleDown
+# Next track
+sony_next_track:
+  alias: Sony next track
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - NextTrack
+# Previous track
+sony_previous_track:
+  alias: Sony previous track
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63907077
+      delay_secs: 0.3
+      command:
+        - PreviousTrack
+
+#################################################################
+# Oscillating fan
+fan_power_toggle:
+  alias: Oscillating fan power toggle
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905556
+      delay_secs: 0.3
+      command:
+        - 'Power Toggle'
+# Fan speed
+fan_speed:
+  alias: Oscillating fan speed
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905556
+      delay_secs: 0.3
+      command:
+        - 'Fan Speed'
+# Oscillate
+fan_oscillate:
+  alias: Oscillating fan oscillate
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905556
+      delay_secs: 0.3
+      command:
+        - Oscillate
+# Fan mode
+fan_mode:
+  alias: Oscillating fan mode selection
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 63905556
+      delay_secs: 0.3
+      command:
+        - Mode
+
+#################################################################
+# Send Magic Packet/Wake on LAN:
+# Wake up Xpc
+wakeup_xpc:
+  sequence:
+  - service: wake_on_lan.send_magic_packet
+    data_template:
+      mac: "00:30:1b:bd:9c:37"
+      broadcast_address: 192.168.1.255
+# Wake up Acer Switch
+wakeup_acer:
+  sequence:
+  - service: wake_on_lan.send_magic_packet
+    data_template:
+      mac: "5c:e0:c5:bf:ca:5c"
+      broadcast_address: 192.168.1.255
+# Wake up UltraDell
+wakeup_ultradell:
+  sequence:
+# LAN
+  - service: wake_on_lan.send_magic_packet
+    data_template:
+      mac: 84:7b:eb:2a:73:20
+      broadcast_address: 192.168.1.255
+# Try wifi also
+  - service: wake_on_lan.send_magic_packet
+    data_template:
+      mac: e4:b3:18:71:9a:8a
+      broadcast_address: 192.168.1.255
+
+#################################################################
+# Switch to UltraDell screen
+ultradell_screen:
+  alias: ultraDell screen
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 67305437
+      delay_secs: 0.3
+      command:
+        - Input1
+# Switch to Giada screen
+giada_screen:
+  alias: Giada screen
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 67305437
+      delay_secs: 0.3
+      command:
+        - Input2
+# Switch to Xpc screen
+xpc_screen:
+  alias: xpc screen
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.office_hub
+      device: 67305437
+      delay_secs: 0.3
+      command:
+        - Input3
+
+#################################################################
+# Garage moOde
+pimoodeg_play_pause:
+  alias: PimoOdeG play/pause
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.garage_hub
+      device: 68985397
+      delay_secs: 0.3
+      command:
+        - play/pause
+# Shut down Garage moOde
+pimoodeg_shutdown:
+  alias: PimoOdeG shutdown
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.garage_hub
+      device: 68985397
+      delay_secs: 0.3
+      command:
+        - shutdown
