@@ -1,0 +1,10 @@
+_archive/
+.cloud/
+.storage/
+*.log
+*.db
+*.conf
+*.sqlite
+*.xml
+QZW_Log.txt
+secrets.yaml
