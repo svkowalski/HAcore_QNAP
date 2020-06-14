@@ -59,7 +59,7 @@ onkyo_chromeaudio:
   - service: remote.turn_on
     entity_id: remote.family_room_hub
     data_template:
-      activity: 40160440
+      activity: U-verse
 
 #################################################################
 # Family room hub Broadcast channel selections
@@ -162,6 +162,17 @@ zone2pc:
       delay_secs: 0.3
       command:
         - 'Zone 2 PC'
+
+zone2cast:
+  alias: Zone 2 Audiocast
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.family_room_hub
+      device: 63675166
+      delay_secs: 0.3
+      command:
+        - 'Zone 2 U-verse'
 
 #################################################################
 # Office Hub commands
@@ -603,8 +614,7 @@ hdmi_1:
       delay_secs: 0.3
       command:
         - Input1
-# Switch to (currently) ASUS Chromebook screen
-# Note: Harmony mislabelled Input2 & Input3 (6/8/2020)
+# Switch to (currently) Xpc Chromebook screen
 hdmi_2:
   alias: HDMI 2
   sequence:
@@ -615,7 +625,7 @@ hdmi_2:
       delay_secs: 0.3
       command:
         - Input2
-# Switch to (currently) Xpc screen
+# Switch to (currently) ASUS screen
 hdmi_3:
   alias: HDMI 3
   sequence:
