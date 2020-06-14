@@ -1,0 +1,1258 @@
+background: var(--background-image)
+custom_header:
+  active_tab_color: var(--state-icon-active-color)
+  background: var(--app-header-background-color)
+  compact_mode: true
+  elements_color: var(--app-header-text-color)
+  hidden_tab_redirect: false
+  tab_indicator_color: var(--state-icon-active-color)
+  voice_hide: true
+preload:
+  - markdown
+title: 8610 Sea Ash Cir
+views:
+  - badges: []
+    cards:
+      - cards:
+          - current: true
+            details: true
+            entity: weather.kgtu_daynight
+            forecast: true
+            hourly_forecast: true
+            number_of_forecasts: 5
+            type: 'custom:weather-card'
+          - cards:
+              - entity: binary_sensor.pimoodeg
+                icon: 'mdi:power'
+                name: Garage moOde is
+                show_state: true
+                state:
+                  - icon: 'mdi:music-note-off-outline'
+                    styles:
+                      card:
+                        - filter: opacity(50%)
+                      icon:
+                        - filter: grayscale(100%)
+                    value: 'off'
+                  - color: orange
+                    icon: 'mdi:music-note-plus'
+                    value: 'on'
+                styles:
+                  card:
+                    - width: 150px
+                    - height: 100px
+                type: 'custom:button-card'
+              - entity: script.mpd_play_pause
+                hold_action:
+                  action: more-info
+                icon: 'mdi:play-pause'
+                icon_height: 32px
+                name: garage moOde
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: call-service
+                  service: script.mpd_play_pause
+                type: entity-button
+              - entity: cover.garage_door_wyze
+                icon: 'mdi:garage'
+                name: Garage door is
+                show_state: true
+                state:
+                  - icon: 'mdi:garage'
+                    styles:
+                      card:
+                        - filter: opacity(50%)
+                      icon:
+                        - filter: grayscale(100%)
+                    value: closed
+                  - color: orange
+                    icon: 'mdi:garage-alert'
+                    value: open
+                styles:
+                  card:
+                    - width: 150px
+                    - height: 100px
+                type: 'custom:button-card'
+            type: horizontal-stack
+          - detail: 3
+            entity: sensor.family_room_sensor_light_level
+            graph: line
+            icon: 'mdi:thermometer'
+            name: Family room light level
+            type: sensor
+        type: vertical-stack
+      - cards:
+          - control:
+              _icons: true
+            decimals: 0
+            entity: climate.trane_xl824_nativezone
+            icons:
+              cool: 'mdi:snowflake'
+              heating: 'mdi:fire'
+              idle: 'mdi:off'
+            label:
+              temperature: Temp
+            name: Climate
+            sensors:
+              - entity: binary_sensor.trane_xl824_blower_active
+                icon: 'mdi:air-conditioner'
+                name: Fan
+              - entity: sensor.trane_xl824_outdoor_temperature
+                name: Outside
+              - entity: sensor.trane_xl824_relative_humidity
+                icon: 'mdi:water-percent'
+                name: Humidity
+              - entity: sensor.trane_xl824_nativezone_zone_setpoint_status
+                icon: 'mdi:hand-pointing-right'
+                name: setpoint
+            type: 'custom:simple-thermostat'
+          - detail: 3
+            entity: sensor.family_room_sensor_temperature
+            graph: line
+            icon: 'mdi:thermometer'
+            name: Family room temp
+            type: sensor
+        type: vertical-stack
+    icon: 'mdi:weather-partly-cloudy'
+    theme: Backend-selected
+    title: Climate
+  - cards:
+      - cards:
+          - cards:
+              - content: |
+                  ### <center> Family room
+                  ---
+                type: markdown
+              - cards:
+                  - entity: light.family_room_lamp
+                    icon: 'mdi:lamp'
+                    name: Table lamp
+                    type: light
+                  - entity: switch.overhead_fan_light
+                    hold_action:
+                      action: more-info
+                    icon: 'mdi:ceiling-light'
+                    name: Overhead fan light
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: entity-button
+                  - entity: light.bookcase_lights
+                    icon: 'mdi:track-light'
+                    name: Bookcase
+                    type: light
+                  - entity: light.dining_room_light
+                    hold_action:
+                      action: more-info
+                    icon: 'mdi:ceiling-light'
+                    name: Dining
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: light
+                type: horizontal-stack
+            type: vertical-stack
+          - cards:
+              - content: |
+                  ### <center> Office
+                  ---
+                type: markdown
+              - cards:
+                  - entity: light.office_floor_lamp_colorful
+                    hold_action:
+                      action: more-info
+                    icon: 'mdi:floor-lamp'
+                    name: Floor
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: light
+                  - entity: light.office_reading_light
+                    hold_action:
+                      action: more-info
+                    icon: 'mdi:spotlight-beam'
+                    name: Reading
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: light
+                  - entity: light.steve_s_desk_lamp
+                    hold_action:
+                      action: more_info
+                    icon: 'mdi:desk-lamp'
+                    name: Steve
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: light
+                  - entity: light.laura_s_desk_lamp
+                    hold_action:
+                      action: more_info
+                    icon: 'mdi:lamp'
+                    name: Laura
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: light
+                type: horizontal-stack
+            type: vertical-stack
+        type: vertical-stack
+      - cards:
+          - columns: 6
+            entities:
+              - entity: switch.lamp_in_foyer
+                icon: 'mdi:lamp'
+                name: Foyer
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: light.bookcase_candles
+                icon: 'mdi:candle'
+                name: Candles
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: switch.lamp_on_dresser
+                icon: 'mdi:lamp'
+                name: Dresser
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: switch.circadian_lighting_circadian_lighting
+                icon: 'mdi:theme-light-dark'
+                name: Circadian
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: light.bedroom_light
+                hold_action:
+                  action: more-info
+                icon: 'mdi:ceiling-light'
+                name: Bedroom
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+              - entity: light.bathroom_light
+                hold_action:
+                  action: more-info
+                icon: 'mdi:spotlight-beam'
+                name: Bathroom
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+            show_state: false
+            title: null
+            type: glance
+          - cards:
+              - content: |
+                  ### <center> Kitchen & Outside
+                  ---
+                type: markdown
+              - cards:
+                  - entity: light.under_cabinet_leds
+                    hold_action:
+                      action: more_info
+                    icon: 'mdi:wall-sconce-flat'
+                    name: Counter
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: light
+                  - entity: light.kitchen_sink_light
+                    hold_action:
+                      action: more-info
+                    icon: 'mdi:food-variant'
+                    name: Sink
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: light
+                  - entity: light.back_door_light
+                    hold_action:
+                      action: more-info
+                    icon: 'mdi:outdoor-lamp'
+                    name: Back door
+                    show_state: true
+                    tap_action:
+                      action: toggle
+                    type: light
+                  - entity: light.porch_fan_light
+                    icon: 'mdi:ceiling-light'
+                    name: Porch light
+                    type: light
+                type: horizontal-stack
+            type: vertical-stack
+          - cards:
+              - content: |
+                  ### <center> Garage
+                  ---
+                type: markdown
+              - cards:
+                  - entity: cover.garage_door_wyze
+                    icon: 'mdi:garage'
+                    name: Garage door is
+                    show_state: true
+                    state:
+                      - icon: 'mdi:garage'
+                        styles:
+                          card:
+                            - filter: opacity(100%)
+                          icon:
+                            - filter: grayscale(100%)
+                        value: closed
+                      - color: orange
+                        icon: 'mdi:garage-alert'
+                        value: open
+                    styles:
+                      card:
+                        - width: 150px
+                        - height: 100px
+                    type: 'custom:button-card'
+                  - color: var(--primary-text-color)
+                    entity_id: remote.garage_hub
+                    icon: 'mdi:stop-circle-outline'
+                    name: Garage Pi
+                    tap_action:
+                      action: call-service
+                      service: script.pimoodeg_shutdown
+                      service_data:
+                        entity_id: remote.garage_hub
+                    type: 'custom:button-card'
+                  - entity: binary_sensor.pimoodeg
+                    icon: 'mdi:power'
+                    name: Garage moOde
+                    show_state: true
+                    state:
+                      - icon: 'mdi:music-note-off-outline'
+                        styles:
+                          card:
+                            - filter: opacity(100%)
+                          icon:
+                            - filter: grayscale(100%)
+                        value: 'off'
+                      - color: orange
+                        icon: 'mdi:music-note-plus'
+                        value: 'on'
+                    styles:
+                      card:
+                        - width: 150px
+                        - height: 100px
+                    type: 'custom:button-card'
+                type: horizontal-stack
+            type: vertical-stack
+        type: vertical-stack
+    icon: 'mdi:home-assistant'
+    title: Lights
+  - badges: []
+    cards:
+      - content: '### <center> Family room audio'
+        type: markdown
+      - cards:
+          - cards:
+              - entity_id: remote.family_room_hub
+                icon: 'mdi:library-music'
+                name: moOde Music
+                tap_action:
+                  action: call-service
+                  service: script.onkyo_moode
+                  service_data:
+                    entity_id: remote.family_room_hub
+                type: entity-button
+              - entity: remote.family_room_hub
+                icon: 'mdi:cast-connected'
+                name: Cast
+                tap_action:
+                  action: call-service
+                  service: script.onkyo_chromeaudio
+                  service_data:
+                    entity_id: remote.family_room_hub
+                type: entity-button
+              - entity: remote.family_room_hub
+                icon: 'mdi:power'
+                name: Power off
+                tap_action:
+                  action: call-service
+                  service: script.shut_everything_off
+                  service_data:
+                    entity_id: remote.family_room_hub
+                type: entity-button
+            type: horizontal-stack
+          - entities:
+              - input_select.family_room_hub_selection
+            group: true
+            type: entities
+          - decimal: 0
+            direction: right
+            entity: sensor.onkyo_volume
+            icon: 'mdi:speaker-wireless'
+            indicator: 'off'
+            max: 80
+            min: 0
+            name: ' '
+            severity:
+              - color: '#40bf40'
+                from: 0
+                to: 15
+              - color: '#bf9540'
+                from: 16
+                to: 32
+              - color: '#bf4040'
+                from: 33
+                to: 80
+            type: 'custom:bar-card'
+            unit_of_measurement: false
+            width: 100%
+          - entity: media_player.onkyo
+            group: false
+            hide:
+              controls: true
+              icon_state: false
+              name: true
+              power_state: false
+            icon: 'mdi:playlist-music'
+            idle_view:
+              - when_idle: true
+            info: scroll
+            max_volume: 80
+            name: Onkyo AV receiver
+            shortcuts:
+              buttons:
+                - icon: 'mdi:numeric-2-box-multiple-outline'
+                  id: script.zone2toggle
+                  name: Zone
+                  type: script
+                - icon: 'mdi:music-circle-outline'
+                  id: script.zone2pc
+                  name: PC
+                  type: script
+                - icon: 'mdi:cast'
+                  id: script.zone2cast
+                  name: Cast
+                  type: script
+                - icon: 'mdi:play-pause'
+                  id: script.mpd_play_pause
+                  type: script
+              columns: 4
+            source: full
+            toggle_power: false
+            type: 'custom:mini-media-player'
+            volume_stateless: true
+          - content: |-
+              ---
+              Audio cast
+            type: markdown
+          - artwork: cover
+            entity: media_player.chromecast_audio_onkyo
+            group: true
+            hide:
+              artwork_border: false
+              power: true
+              shuffle: false
+              volume: true
+            icon: 'mdi:cast-connected'
+            idle_view:
+              - when_idle: true
+            info: scroll
+            type: 'custom:mini-media-player'
+        type: vertical-stack
+      - aspect_ratio: 115%
+        type: iframe
+        url: 'http://192.168.1.222'
+    icon: 'mdi:speaker-wireless'
+    title: Sound settings
+  - cards:
+      - aspect_ratio: 50%
+        type: iframe
+        url: 'http://192.168.1.222'
+    icon: 'mdi:music-circle-outline'
+    panel: true
+    title: MoOde Audio
+  - badges: []
+    cards:
+      - cards:
+          - content: '### <center> Office window speakers'
+            type: markdown
+          - cards:
+              - color: var(--primary-text-color)
+                icon: 'mdi:music-circle'
+                name: moOde
+                tap_action:
+                  action: call-service
+                  service: script.denon_moode
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color: var(--primary-text-color)
+                icon: 'mdi:cast'
+                name: audio cast
+                tap_action:
+                  action: call-service
+                  service: script.denon_aux_in
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color: var(--primary-text-color)
+                icon: 'mdi:disc-player'
+                name: DVD/CD
+                tap_action:
+                  action: call-service
+                  service: script.denon_dvd_in
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+            type: horizontal-stack
+          - cards:
+              - entity: switch.denon_power
+                hold_action:
+                  action: more-info
+                icon: 'mdi:power'
+                icon_height: 36px
+                name: Denon
+                show_icon: true
+                show_name: false
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - color: var(--primary-text-color)
+                icon: 'mdi:volume-mute'
+                name: ' '
+                tap_action:
+                  action: call-service
+                  service: script.denon_mute
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color: var(--primary-text-color)
+                icon: 'mdi:volume-minus'
+                name: ' '
+                tap_action:
+                  action: call-service
+                  service: script.denon_volume_down
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color: var(--primary-text-color)
+                icon: 'mdi:volume-plus'
+                name: ' '
+                tap_action:
+                  action: call-service
+                  service: script.denon_volume_up
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+            type: horizontal-stack
+          - content: |
+              ___
+              ### <center> Steve's PC
+            type: markdown
+          - cards:
+              - color_off: var(--primary-color)
+                icon: 'mdi:equal-box'
+                name: Eq Bass
+                tap_action:
+                  action: call-service
+                  service: script.aiwa_eq_bass_up
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color_off: var(--primary-color)
+                icon: 'mdi:arrow-up-bold-box-outline'
+                name: T-Bass
+                tap_action:
+                  action: call-service
+                  service: script.aiwa_t_bass
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color_off: var(--primary-color)
+                icon: 'mdi:laptop-windows'
+                name: PC in
+                tap_action:
+                  action: call-service
+                  service: script.aiwa_aux_in
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color_off: var(--primary-color)
+                icon: 'mdi:surround-sound'
+                name: Surround
+                tap_action:
+                  action: call-service
+                  service: script.aiwa_surround_toggle
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+            type: horizontal-stack
+          - cards:
+              - entity: switch.aiwa_power
+                hold_action:
+                  action: more-info
+                icon: 'mdi:power'
+                icon_height: 36px
+                name: Aiwa
+                show_icon: true
+                show_name: false
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - color_off: var(--primary-color)
+                icon: 'mdi:volume-mute'
+                name: ' '
+                tap_action:
+                  action: call-service
+                  service: script.aiwa_cd_in
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color: var(--primary-color)
+                entity: script.aiwa_volume_down
+                icon: 'mdi:volume-minus'
+                name: ' '
+                tap_action:
+                  action: call-service
+                  service: script.aiwa_volume_down
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color: var(--primary-text-color)
+                entity: script.aiwa_volume_up
+                icon: 'mdi:volume-plus'
+                name: ' '
+                tap_action:
+                  action: call-service
+                  service: script.aiwa_volume_up
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+            type: horizontal-stack
+          - content: |-
+              ---
+              ### <center> PC controls
+            type: markdown
+          - cards:
+              - entity: switch.xpc
+                hold_action:
+                  action: more-info
+                icon: 'mdi:laptop-windows'
+                name: Wake Xpc
+                state_color: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - color: var(--primary-text-color)
+                icon: 'mdi:monitor'
+                name: ASUS
+                tap_action:
+                  action: call-service
+                  service: script.hdmi_3
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color: var(--primary-text-color)
+                icon: 'mdi:monitor-multiple'
+                name: Xpc
+                tap_action:
+                  action: call-service
+                  service: script.hdmi_2
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color: var(--primary-text-color)
+                icon: 'mdi:monitor-multiple'
+                name: UltraDell
+                tap_action:
+                  action: call-service
+                  service: script.hdmi_1
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+            type: horizontal-stack
+        type: vertical-stack
+      - aspect_ratio: 115%
+        type: iframe
+        url: 'http://192.168.1.222'
+      - cards:
+          - content: '###  <center> Office lights'
+            type: markdown
+          - cards:
+              - entity: light.office_floor_lamp_colorful
+                hold_action:
+                  action: more-info
+                icon: 'mdi:floor-lamp'
+                name: Floor
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+              - entity: light.office_reading_light
+                hold_action:
+                  action: more-info
+                icon: 'mdi:spotlight-beam'
+                name: Reading
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+              - entity: light.laura_s_desk_lamp
+                hold_action:
+                  action: more_info
+                icon: 'mdi:lamp'
+                name: Laura
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+              - entity: light.steve_s_desk_lamp
+                hold_action:
+                  action: more_info
+                icon: 'mdi:desk-lamp'
+                name: Steve
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+            type: horizontal-stack
+          - content: |
+              ___
+              ### <center> Brother printer
+            type: markdown
+          - cards: null
+            direction: up
+            entities:
+              - color: black
+                entity: sensor.mfc_j4710dw_black_ink_remaining
+                name: Black
+              - color: cyan
+                entity: sensor.mfc_j4710dw_cyan_ink_remaining
+                name: Cyan
+              - color: magenta
+                entity: sensor.mfc_j4710dw_magenta_ink_remaining
+                name: Magenta
+              - color: yellow
+                entity: sensor.mfc_j4710dw_yellow_ink_remaining
+                name: Yellow
+            height: 150px
+            positions:
+              icon: 'off'
+              indicator: inside
+              value: outside
+            stack: horizontal
+            type: 'custom:bar-card'
+            width: 60%
+          - content: |-
+              ---
+              ### <center> Audio cast
+            type: markdown
+          - artwork: cover
+            entity: media_player.chromecast_audio_onkyo
+            group: true
+            hide:
+              artwork_border: false
+              power: true
+              shuffle: false
+              volume: true
+            icon: 'mdi:cast-connected'
+            idle_view:
+              - when_idle: true
+            info: scroll
+            type: 'custom:mini-media-player'
+        type: vertical-stack
+    icon: 'mdi:chair-rolling'
+    title: Office
+  - badges: []
+    cards:
+      - cards:
+          - content: |
+              ### <center> Streaming channels:
+            type: markdown
+          - cards:
+              - color_type: blank-card
+                type: 'custom:button-card'
+              - entity: remote.family_room_hub
+                icon: 'mdi:youtube-tv'
+                name: YouTube TV
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    activity: 40160434
+                    entity_id: remote.family_room_hub
+                type: entity-button
+              - entity: remote.family_room_hub
+                icon: 'mdi:netflix'
+                name: Netflix
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    activity: 40161291
+                    entity_id: remote.family_room_hub
+                type: entity-button
+              - entity: remote.family_room_hub
+                icon: 'mdi:amazon'
+                name: Amazon
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    activity: 40161319
+                    entity_id: remote.family_room_hub
+                type: entity-button
+              - color_type: blank-card
+                type: 'custom:button-card'
+            type: horizontal-stack
+          - content: |
+              ---
+              ### <center> TV functions:
+            type: markdown
+          - cards:
+              - entity: remote.family_room_hub
+                icon: 'mdi:television-classic'
+                name: Broadcast TV
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    activity: 40160435
+                    entity_id: remote.family_room_hub
+                type: entity-button
+              - entity: remote.family_room_hub
+                icon: 'mdi:disc-player'
+                name: DVD
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    activity: 40160437
+                    entity_id: remote.family_room_hub
+                type: entity-button
+              - entity: remote.family_room_hub
+                icon: 'mdi:cast'
+                name: Cast to TV
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    activity: 40160439
+                    entity_id: remote.family_room_hub
+                type: entity-button
+              - entity: remote.family_room_hub
+                icon: 'mdi:power'
+                name: Power off
+                tap_action:
+                  action: call-service
+                  service: script.shut_everything_off
+                  service_data:
+                    entity_id: remote.family_room_hub
+                type: entity-button
+            type: horizontal-stack
+          - content: |-
+              ___
+              ### <center> Change Over-the-Air channels:
+            type: markdown
+          - cards:
+              - image: /local/icons/NBC-68669.png
+                tap_action:
+                  action: call-service
+                  service: script.kxan
+                  service_data:
+                    entity_id: remote.family_room_hub
+                type: picture
+              - image: /local/icons/CBS-31440.png
+                tap_action:
+                  action: call-service
+                  service: script.keye
+                  service_data:
+                    entity_id: remote.family_room_hub
+                type: picture
+              - image: /local/icons/ABC-73376.png
+                tap_action:
+                  action: call-service
+                  service: script.kvue
+                  service_data:
+                    entity_id: remote.family_room_hub
+                type: picture
+              - image: /local/icons/PBS-23353.png
+                tap_action:
+                  action: call-service
+                  service: script.klru
+                  service_data:
+                    entity_id: remote.family_room_hub
+                type: picture
+            type: horizontal-stack
+        type: vertical-stack
+      - apps:
+          - app: Netflix
+            id: Netflix
+            image: /local/icons/Netflix-12.jpg
+          - app: Prime Video
+            id: Prime
+            image: /local/icons/Prime-Video-13.png
+          - app: YouTube TV
+            id: YouTubeTV
+            image: /local/icons/YouTube-tv-logo.png
+          - app: PBS
+            id: PBS
+            image: /local/icons/PBS-23353.png
+        entity: media_player.roku_ultra_4660x2
+        group: true
+        power:
+          hold_action:
+            action: call-service
+            service: script.shut_everything_off
+            service_data:
+              entity_id: remote.family_room_hub
+          tap_action:
+            action: call-service
+            service: light.toggle
+            service_data:
+              entity_id: light.bookcase_lights
+        remote: remote.roku_ultra_4660x2
+        tv: true
+        type: 'custom:roku-card'
+      - cards:
+          - cards: null
+            decimal: 0
+            direction: right
+            entities:
+              - entity: sensor.onkyo_volume
+            icon: 'mdi:speaker-wireless'
+            indicator: 'off'
+            max: 100
+            min: 0
+            name: ' '
+            severity:
+              - color: '#40bf40'
+                from: 0
+                to: 15
+              - color: '#bf9540'
+                from: 16
+                to: 32
+              - color: '#bf4040'
+                from: 33
+                to: 100
+            type: 'custom:bar-card'
+            unit_of_measurement: false
+            width: 100%
+          - entities:
+              - entity: media_player.onkyo
+                group: true
+                hide:
+                  controls: true
+                  icon_state: false
+                  volume: false
+                icon: 'mdi:playlist-music'
+                idle_view:
+                  - when_idle: true
+                info: scroll
+                max_volume: 100
+                name: AV receiver
+                shortcuts:
+                  buttons:
+                    - icon: 'mdi:numeric-2-box-multiple-outline'
+                      id: script.zone2toggle
+                      type: script
+                    - icon: 'mdi:play-pause'
+                      id: script.mpd_play_pause
+                      type: script
+                  columns: 2
+                show_header_toggle: true
+                source: full
+                toggle_power: false
+                type: 'custom:mini-media-player'
+                volume_stateless: true
+            type: entities
+          - content: |-
+              ___
+              Family room lighting
+            type: markdown
+          - cards:
+              - entity: light.family_room_lamp
+                hold_action:
+                  action: more-info
+                icon: 'mdi:lamp'
+                name: Table lamp
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+              - entity: light.bookcase_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:track-light'
+                name: Bookcase
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+              - entity: switch.overhead_fan_light
+                hold_action:
+                  action: more-info
+                icon: 'mdi:ceiling-light'
+                name: Overhead fan light
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: light.kitchen_sink_light
+                hold_action:
+                  action: more-info
+                icon: 'mdi:food-variant'
+                name: Sink
+                show_state: true
+                tap_action:
+                  action: toggle
+                type: light
+            type: horizontal-stack
+        type: vertical-stack
+    icon: 'mdi:television'
+    title: Media Center
+  - badges: []
+    cards:
+      - cards:
+          - entities:
+              - entity: binary_sensor.garage_door_myq_gateway
+              - entity: remote.garage_hub
+            show_header_toggle: false
+            title: Garage devices
+            type: entities
+          - cards:
+              - entity: cover.garage_door_myq
+                hold_action:
+                  action: more-info
+                icon: 'mdi:garage-open'
+                name: Open
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: call-service
+                  service: cover.open_cover
+                  service_data:
+                    entity_id: cover.garage_door_myq
+                type: button
+              - entity: cover.garage_door_wyze
+                icon: 'mdi:garage'
+                name: Garage door is
+                show_state: true
+                state:
+                  - icon: 'mdi:garage'
+                    styles:
+                      card:
+                        - filter: opacity(50%)
+                      icon:
+                        - filter: grayscale(100%)
+                    value: closed
+                  - color: orange
+                    icon: 'mdi:garage-alert'
+                    value: open
+                styles:
+                  card:
+                    - width: 150px
+                    - height: 100px
+                type: 'custom:button-card'
+              - entity: cover.garage_door_myq
+                hold_action:
+                  action: more-info
+                icon: 'mdi:garage'
+                name: Close
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: call-service
+                  service: cover.close_cover
+                  service_data:
+                    entity_id: cover.garage_door_myq
+                type: button
+            type: horizontal-stack
+          - content: |-
+              ### <center> Garage moOde
+              ---
+            type: markdown
+          - cards:
+              - color: var(--primary-text-color)
+                icon: 'mdi:play-pause'
+                name: play/pause
+                styles:
+                  card:
+                    - width: 120px
+                    - height: 100px
+                tap_action:
+                  action: call-service
+                  service: script.pimoodeg_play_pause
+                  service_data:
+                    entity_id: remote.garage_hub
+                type: 'custom:button-card'
+              - color: var(--primary-text-color)
+                icon: 'mdi:stop-circle-outline'
+                name: Garage Pi
+                styles:
+                  card:
+                    - width: 100px
+                    - height: 100px
+                tap_action:
+                  action: call-service
+                  service: script.pimoodeg_shutdown
+                  service_data:
+                    entity_id: remote.garage_hub
+                type: 'custom:button-card'
+              - entity: switch.garage_moode
+                icon: 'mdi:power'
+                name: moOdeG is
+                show_state: true
+                state:
+                  - icon: 'mdi:power-off'
+                    styles:
+                      card:
+                        - filter: opacity(50%)
+                      icon:
+                        - filter: grayscale(100%)
+                    value: 'off'
+                  - color: white
+                    icon: 'mdi:power-cycle'
+                    value: 'on'
+                styles:
+                  card:
+                    - width: 120px
+                    - height: 100px
+                type: 'custom:button-card'
+              - entity: binary_sensor.pimoodeg
+                icon: 'mdi:power'
+                name: Garage Pi is
+                show_state: true
+                state:
+                  - icon: 'mdi:music-note-off-outline'
+                    styles:
+                      card:
+                        - filter: opacity(50%)
+                      icon:
+                        - filter: grayscale(100%)
+                    value: 'off'
+                  - color: orange
+                    icon: 'mdi:music-note-plus'
+                    value: 'on'
+                styles:
+                  card:
+                    - width: 120px
+                    - height: 100px
+                type: 'custom:button-card'
+            type: horizontal-stack
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: sensor.qnap_cpu_temperature
+              - entity: sensor.qnap_cpu_usage
+              - entity: sensor.mfc_j4710dw_status
+              - entity: sensor.mfc_j4710dw_page_counter
+              - entity: remote.office_hub
+            show_header_toggle: false
+            title: Office devices
+            type: entities
+          - content: |
+              ---
+              ### <center> Window fan
+            type: markdown
+          - cards:
+              - color_off: var(--primary-color)
+                icon: 'mdi:fan'
+                name: on/off
+                tap_action:
+                  action: call-service
+                  service: script.fan_power_toggle
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color_off: var(--primary-color)
+                icon: 'mdi:expand-all-outline'
+                name: Fan speed
+                tap_action:
+                  action: call-service
+                  service: script.fan_speed
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color_off: var(--primary-color)
+                icon: 'mdi:restore'
+                name: Oscillate
+                tap_action:
+                  action: call-service
+                  service: script.fan_oscillate
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+              - color_off: var(--primary-color)
+                icon: 'mdi:weather-windy'
+                name: Fan mode
+                tap_action:
+                  action: call-service
+                  service: script.fan_mode
+                  service_data:
+                    entity_id: remote.office_hub
+                type: 'custom:button-card'
+            type: horizontal-stack
+        type: vertical-stack
+      - entity: climate.office_closet_fan
+        fan_mode:
+          hide: 'on'
+          icon: 'mdi:fan'
+        icon: ' '
+        name: Closet fan
+        secondary_info: hvac-mode
+        temperature:
+          source:
+            entity: sensor.office_fan_temp
+          unit: °F
+        type: 'custom:mini-climate'
+      - cards:
+          - detail: 3
+            entity: sensor.office_fan_temp
+            graph: line
+            icon: 'mdi:theme-light-dark'
+            type: sensor
+          - detail: 3
+            entity: sensor.qnap_cpu_temperature
+            graph: line
+            icon: 'mdi:theme-light-dark'
+            type: sensor
+        type: vertical-stack
+    icon: 'mdi:garage'
+    path: garage-and-closet
+    title: Garage & closet
+  - badges: []
+    cards:
+      - cards:
+          - entities:
+              - entity: sensor.circadian_values
+              - entity: switch.circadian_lighting_circadian_lighting
+            show_header_toggle: false
+            title: Circadian lighting
+            type: entities
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: sensor.family_room_sensor_temperature
+              - entity: binary_sensor.family_room_sensor_motion
+              - entity: binary_sensor.motion_sensor
+              - entity: sensor.family_room_sensor_light_level
+            show_header_toggle: false
+            title: 'Motion, light & temp sensors'
+            type: entities
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: sensor.family_room_hueremote_battery_level
+              - entity: sensor.kitchen_sink_hueremote_battery_level
+              - entity: sensor.laura_desk_hueremote_battery_level
+              - entity: sensor.office_reading_light_hueremote_battery_level
+              - entity: sensor.porch_hueremote_battery_level
+              - entity: sensor.steve_desk_hueremote_battery_level
+              - entity: sensor.acer_switch_chromebook_battery_level
+              - entity: sensor.steve_s_cell_phone_battery_level
+            show_header_toggle: false
+            title: Battery levels
+            type: entities
+        type: vertical-stack
+    icon: 'mdi:settings-outline'
+    title: Sandbox
