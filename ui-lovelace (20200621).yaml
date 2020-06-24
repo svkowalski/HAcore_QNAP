@@ -630,17 +630,17 @@ views:
               ### <center> PC controls
             type: markdown
           - cards:
-              - entity: switch.rpi
+              - entity: switch.xpc
                 hold_action:
                   action: more-info
-                icon: 'mdi:desktop-tower-monitor'
-                name: Raspberry Pi
+                icon: 'mdi:laptop-windows'
+                name: Wake Xpc
                 state_color: true
                 tap_action:
                   action: toggle
                 type: entity-button
               - color: var(--primary-text-color)
-                icon: 'hass:tablet'
+                icon: 'mdi:monitor'
                 name: ASUS
                 tap_action:
                   action: call-service
@@ -649,7 +649,7 @@ views:
                     entity_id: remote.office_hub
                 type: 'custom:button-card'
               - color: var(--primary-text-color)
-                icon: 'hass:server'
+                icon: 'mdi:monitor-multiple'
                 name: Xpc
                 tap_action:
                   action: call-service
@@ -658,7 +658,7 @@ views:
                     entity_id: remote.office_hub
                 type: 'custom:button-card'
               - color: var(--primary-text-color)
-                icon: 'hass:laptop'
+                icon: 'mdi:monitor-multiple'
                 name: UltraDell
                 tap_action:
                   action: call-service
@@ -1269,21 +1269,5 @@ views:
             title: Battery levels
             type: entities
         type: vertical-stack
-      - entities:
-          - entity: sensor.steevs_iphone_geocoded_location
-          - entity: sensor.steevs_iphone_battery_level
-          - entity: sensor.steevs_iphone_battery_state
-          - entity: sensor.steevs_iphone_activity
-          - entity: sensor.steevs_iphone_steps
-          - entity: sensor.steevs_iphone_average_active_pace
-          - entity: sensor.steevs_iphone_distance
-          - entity: sensor.steevs_iphone_floors_ascended
-          - entity: sensor.steevs_iphone_floors_descended
-          - entity: sensor.steevs_iphone_last_update_trigger
-          - entity: sensor.steevs_iphone_connection_type
-          - entity: sensor.steevs_iphone_ssid
-          - entity: sensor.steevs_iphone_bssid
-        title: Steve's iPhone taken from Laura
-        type: entities
     icon: 'mdi:settings-outline'
     title: Sandbox

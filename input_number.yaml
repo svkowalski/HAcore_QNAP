@@ -15,7 +15,7 @@
   onkyo_volume_box:
     icon: mdi:volume-high
     name: Volume
-    initial: 12
+    initial: 10
     min: 0
     max: 80
     step: 1
